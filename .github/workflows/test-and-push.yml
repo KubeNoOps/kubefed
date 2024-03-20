@@ -17,7 +17,9 @@ jobs:
       - uses: actions/setup-go@v2
 
       - name: Run tests
-        run: DOWNLOAD_BINARIES=y bash -x ./scripts/pre-commit.sh
+        run: |
+          export PATH="${PATH}:$(go env GOPATH)/bin"
+          DOWNLOAD_BINARIES=y bash -x ./scripts/pre-commit.sh
 
       - name: Login to ghrc.io
         uses: docker/login-action@v1
